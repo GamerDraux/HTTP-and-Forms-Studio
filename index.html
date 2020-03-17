@@ -2,6 +2,7 @@
 
 <head>
 	<meta charset="utf-8">
+	<link href="style.css" rel="stylesheet" type="text/css">
 	<script>
 	function setSearchEngine (){
 		let form = document.getElementById("searchForm");
@@ -21,12 +22,18 @@
 		let form = document.getElementById('searchForm');
 		form.addEventListener("submit", function(){
 			let searchTerm = document.getElementById('searchTerm');
-			let radioCheck = document.getElementsByClassName('engine')
-			if (searchTerm.value===""){
+			let radioCheck = document.getElementsByName('engine');
+			let checked = false;
+			for (let i=0; i<radioCheck.length; i++){
+				if (radioCheck[i].checked){
+					checked=true;
+				}
+			}
+			console.log (checked);
+			if (searchTerm.value===""||checked===false){
 				alert("All fields must be entered!");
 				event.preventDefault();
-			}
-		setSearchEngine();
+			}else{setSearchEngine();}
 		});
     });
 	</script>
